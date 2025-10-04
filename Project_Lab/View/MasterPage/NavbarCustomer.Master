@@ -1,0 +1,140 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavbarCustomer.master.cs" Inherits="Project_Lab.View.MasterPage.NavbarCustomer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        *{
+            margin:0;
+            box-sizing:border-box;
+        }
+        .greeting-container {
+            margin-top: 8px;
+            width: 100%;
+            
+        }
+
+        .greeting-label {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .line-1{
+            position: relative;
+            top: 50%;  
+            width: 24em;
+            margin: 0 auto;
+            border-right: 2px solid rgba(255,255,255,.75);
+            font-size: 180%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+               
+        }
+
+        .anim-typewriter{
+          animation: typewriter 4s steps(44) 1s 1 normal both,
+                     blinkTextCursor 500ms steps(44) infinite normal;
+        }
+        @keyframes typewriter{
+          from{width: 0;}
+          to{width: 14em;}
+        }
+        @keyframes blinkTextCursor{
+          from{border-right-color: rgba(255,255,255,.75);}
+          to{border-right-color: transparent;}
+        }
+
+        .navbar {
+            background-color: #343a40;
+            overflow: hidden;
+            display: flex;
+            padding: 12px 20px;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navbar a, .navbar input[type="submit"], .navbar button {
+            color: white;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-weight: 500;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar a:hover, .navbar input[type="submit"]:hover, .navbar button:hover {
+            background-color: #495057;
+            border-radius: 6px;
+        }
+
+        .navbar .active {
+            background-color: #007bff;
+            border-radius: 6px;
+        }
+
+        .navbar form {
+            margin: 0;
+        }
+        
+
+    </style>
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    
+        <div class="navbar" id="Guest" runat="server" Visible="false">
+            <asp:HyperLink ID="hlHome1" runat="server" NavigateUrl="~/View/HomePage.aspx" Text="Home" />
+            <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/View/LoginPage.aspx" Text="Login" />
+            <asp:HyperLink ID="hlRegister" runat="server" NavigateUrl="~/View/RegisterPage.aspx" Text="Register" />
+
+        </div>
+
+        <div class="navbar" id="Customer" runat="server" Visible="false">
+            <asp:HyperLink ID="hlHome" runat="server" NavigateUrl="~/View/HomePage.aspx" Text="Home" />
+            <asp:HyperLink ID="hlCart" runat="server" NavigateUrl="~/View/CustomerPage/CartPage.aspx" Text="Cart" />
+            <asp:HyperLink ID="hlMyOrders" runat="server" NavigateUrl="~/View/CustomerPage/OrderPage.aspx" Text="MyOrders" />
+            <asp:HyperLink ID="hlMyProfile" runat="server" NavigateUrl="~/View/ProfilePage.aspx" Text="Profile" />
+            <asp:Button ID="LogOutCustomer" runat="server" Text="LogOut" OnClick="LogOut_Click" />
+        </div>
+
+        <div class="navbar" id="Admin" runat="server" Visible="false">
+
+            <asp:HyperLink ID="hlHome2" runat="server" NavigateUrl="~/View/HomePage.aspx" Text="Home" />
+            <asp:HyperLink ID="hlInsert" runat="server" NavigateUrl="~/View/AdminPage/InsertNewJewel.aspx" Text="Add Jewel" />
+            <asp:HyperLink ID="hlReports" runat="server" NavigateUrl="~/View/AdminPage/ReportPage.aspx" Text="Reports" />
+            <asp:HyperLink ID="hlHandleOrders" runat="server" NavigateUrl="~/View/AdminPage/HandleOrderPage.aspx" Text="Handle Orders" />
+            <asp:HyperLink ID="hlProfile" runat="server" NavigateUrl="~/View/ProfilePage.aspx" Text="Profile" />
+            <asp:Button ID="LogOut" runat="server" Text="LogOut" OnClick="LogOut_Click" />
+        </div>
+
+        <div class="greeting-container">
+            <div class="line-1 anim-typewriter">
+                <asp:Literal ID="TypewriterText" runat="server" 
+                    Text="" 
+                    EnableViewState="false" 
+                    Mode="PassThrough" />
+            </div>
+        </div>
+
+         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+         </asp:ContentPlaceHolder>
+    </form>
+
+
+
+            
+
+</body>
+</html>
